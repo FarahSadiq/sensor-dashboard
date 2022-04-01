@@ -16,11 +16,11 @@ export const AdminLayoutRoutes: Routes = [
       }]
   },
     //     },
-    // { path: 'user',           component: UserComponent },
+     { path: 'maps',           component: MapsComponent },
     // { path: 'table',          component: TableComponent },
     // { path: 'typography',     component: TypographyComponent },
     // { path: 'icons',          component: IconsComponent },
-    //  { path: 'dashboard/' + sessionStorage.getItem('nodeId') + '/avg',           component: DashboardComponent },
+    //  { path: 'dashboard/' + sessionStorage.getItem('nodeId') + '/avg',           component: AverageComponent },
     // { path: 'notifications',  component: NotificationsComponent },
     // { path: 'upgrade',        component: UpgradeComponent }
 ];

@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent{
 constructor() {
-  sessionStorage.setItem('nodeId', '1');
+  //sessionStorage.setItem('nodeId', 'UK-GLA-001');
 }
 }

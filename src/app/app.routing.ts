@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-
+export const node = sessionStorage.getItem('co-ord')
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard/1',
+    redirectTo: 'dashboard/UK-GLA-001',
     pathMatch: 'full',
   }, {
     path: '',

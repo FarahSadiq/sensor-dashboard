@@ -105,273 +105,314 @@
 <!--  </div>-->
 <!--</div>-->
 
+<div class="card" >
+  <ngx-spinner></ngx-spinner>
+  <div *ngFor="let alert of alertMessage;index as i">
+  <div class="alert alert-danger alert-dismissible fade show" id="alert{{i}}" *ngIf="alert.co_level_alert == true">
+    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close" (click)="close('alert'+i)">
+      <i class="nc-icon nc-simple-remove"></i>
+    </button>
+    <span>
+                   <b> CO level detected at node {{alert.device_name}} - Value: {{alert.co_level}} Time: {{alert.time}}</b></span>
+  </div>
+
+  <div class="alert alert-danger alert-dismissible fade show" id="alert2{{i}}" *ngIf="alert.audio_alert == true">
+    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close" (click)="close('alert2'+i)">
+      <i class="nc-icon nc-simple-remove"></i>
+    </button>
+    <span>
+                    <b> Audio signal detected at node {{alert.device_name}} - Value: {{alert.audio_level}} Time: {{alert.time}}</b></span>
+  </div>
+  </div>
+  <h5 class="card-title" id = "topp">Live Readings of Node {{this.nodeId}}</h5>
+  <div class="row">
+    <div class="col col-sm-12 col-md-1 col-lg-2 col-12 ">
+      <div class="card perfect-scrollbar-on ps-scrollbar-y" style="max-height: 150px; overflow-y: auto;">
+        <div class="card-body" >
+          <p style="font-size: 100%; alignment: left; " >Elevation </p>
+          <p style="font-size: 150%; alignment: right; color: #7e57c2"> {{this.elevationValue[this.elevationValue.length-1].toFixed(2)}}  <span style="font-size: 70%">m</span></p><br>
+          <i class="fa fa-clock-o"></i><small class="text-muted">  2 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-1 col-lg-2 col-12 ">
+      <div class="card" style="max-height: 150px; overflow-y: auto;">
+        <div class="card-body"  >
+          <p style="font-size: 100%; alignment: left; " >Air Quality </p>
+          <p style="font-size: 150%; alignment: right; color: #fbc658"> {{this.airQualityValue[this.airQualityValue.length-1].toFixed(2)}} <span style="font-size: 70%">AQI</span></p><br>
+          <i class="fa fa-clock-o"></i><small class="text-muted"> 2 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-1 col-lg-2 col-12 ">
+      <div class="card" style="max-height: 150px; overflow-y: auto;">
+        <div class="card-body" >
+          <p style="font-size: 100%; alignment: left; " >UV Light</p>
+          <p style="font-size: 150%; alignment: right; color: #6bd098"> {{this.uvLight[this.uvLight.length-1].toFixed(2)}} <span style="font-size: 70%">Lux</span> </p><br>
+          <i class="fa fa-clock-o"></i><small class="text-muted"> 2 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-1 col-lg-2 col-12 ">
+      <div class="card" style="max-height: 150px; overflow-y: auto;" >
+        <div class="card-body" >
+          <p style="font-size: 90%; alignment: left; " >Visible Light</p>
+          <p style="font-size: 150%; alignment: right; color: #0277bd"> {{this.visLight[this.visLight.length-1].toFixed(2)}} <span style="font-size: 70%">Lux</span></p><br>
+          <i class="fa fa-clock-o"></i><small class="text-muted"> 2 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-1 col-lg-2 col-12 ">
+      <div class="card" style="max-height: 150px; overflow-y: auto;">
+        <div class="card-body"  >
+          <p style="font-size: 100%; alignment: left; " >IR Light </p>
+          <p style="font-size: 150%; alignment: right; color: #ff6d00"> {{this.irLight[this.irLight.length-1].toFixed(2)}} <span style="font-size: 70%">Lux</span>  </p><br>
+          <i class="fa fa-clock-o"></i><small class="text-muted"> 2 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-2 col-lg-2 col-12 ">
+      <div class="card" style="max-height: 150px; overflow-y: scroll;" >
+        <div class="card-body"  >
+          <p style="font-size: 100%; alignment: left;color: red " >Alerts</p>
+          <div class="row"  *ngFor="let msg of alertsHistory;index as i">
+
+            <div class="col-md-12 col-12" *ngIf="msg.audio_alert">
+              Noise Detected  At {{msg.time.substr(0, 20)}}<br>
+              <span class="bg-danger">
+                  Value: {{msg.audio_level}}
+                </span>
+              <hr>
+            </div>
+
+            <div class="col-md-12 col-12" *ngIf="msg.co_level_alert">
+              High CO level Detected At {{msg.time.substr(0, 20)}}<br>
+              <span class="bg-danger">
+                  Value: {{msg.co_level}}
+                </span>
+              <hr>
+            </div>
+
+            <!--                <div class="col-md-3 col-3 text-right">-->
+            <!--                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>-->
+            <!--                </div>-->
+          </div>
+          <hr>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
 <a id="click" type="button" href="#avg"></a>
 <a id="top" type="button" href="#topp"></a>
-<h5 class="card-title" id = "topp">Live Readings of Node {{this.nodeId}}</h5>
+
 <div class="card" >
-<div class="row">
+  <!--  <div class="row">-->
 
-  <div class="col col-sm-12 col-md-4 col-lg-4 col-12 ">
+  <!--    <div class="col col-sm-12 col-md-2 col-lg-2 col-12 ">-->
 
-    <div class="card"   id = "temperature"  (click)="flip($event)" >
-      <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <div class="card-body">
-        <p style="font-size: 100%; alignment: left; " >Temperature </p>
-        <p style="font-size: 200%; alignment: right; color: #fbc658"> {{this.avgTemp.toFixed(2)}} <span style="font-size: 70%"> °C</span> </p>
-        </div>
-      </div>
-      <div class="flip-card-back">
-        <div class="card-body ">
-          <canvas id=chartTemp  height="100" ></canvas>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
+  <!--      <div class="card"   id = "temperature"  (click)="flip($event,0)" >-->
+  <!--        <div class="flip-card-inner">-->
+  <!--          <div class="flip-card-front">-->
+  <!--            <div class="card-body"  *ngIf="!this.toggle[0]">-->
+  <!--              <br> <br> <br> <br>-->
+  <!--              <p style="font-size: 140%; alignment: left; " >Temperature </p>-->
+  <!--              <p style="font-size: 220%; alignment: right; color: #fbc658"> {{this.avgTemp.toFixed(2)}} <span style="font-size: 70%"> °C</span> </p>-->
+  <!--              <br> <br> <br> <br> <br><br>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="flip-card-back" [ngStyle]="{'height':!this.toggle[0] ? '0px' : '100%'}">-->
+  <!--            <div class="card-body ">-->
+  <!--              <canvas id=chartTemp  height="450" ></canvas>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
 
-  <div class="col col-sm-12 col-md-4 col-lg-4 col-12"   >
-    <div class="card" id = "ph"  (click)="flip($event)" >
-      <div class="flip-card-inner">
-        <div class="flip-card-front" >
+  <!--    <div class="col col-sm-12 col-md-2 col-lg-2 col-12"   >-->
+  <!--      <div class="card" id = "elevation"  (click)="flip($event,1)" >-->
+  <!--        <div class="flip-card-inner ">-->
+  <!--          <div class="flip-card-front" >-->
 
-          <div class="card-header">
-            <p class="card-header" style="font-size: 140%">Ph </p>
-            <p class="card-header" style="font-size: 220%; color: #51CACF;"> {{this.avgPh.toFixed(2)}}  </p>
+  <!--            <div class="card-body"  *ngIf="!this.toggle[1]">-->
+  <!--              <br> <br> <br> <br>-->
+  <!--              <p class="card-header" style="font-size: 140%">Elevation </p>-->
+  <!--              <p class="card-header" style="font-size: 220%; color: #51CACF;"> {{this.avgElevation}}  </p>-->
+  <!--              <br> <br> <br> <br> <br><br>-->
+  <!--            </div>-->
 
-          </div>
-        </div>
-        <div class="flip-card-back">
-          <div class="card-body ">
-            <canvas id=chartPh  height="100" ></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--          </div>-->
+  <!--          <div class="flip-card-back" [ngStyle]="{'height':!this.toggle[1] ? '0px' : '100%'}">-->
+  <!--            <div class="card-body " >-->
+  <!--              <canvas   id=chartElevation  height="450" ></canvas>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
 
-  <div class="col col-sm-12 col-md-4 col-lg-4 col-12"  >
+  <!--    <div class="col col-sm-12 col-md-2 col-lg-2 col-12"  >-->
 
-    <div class="card "  id = "turbidity"  (click)="flip($event)"  >
-      <div class="flip-card-inner">
-        <div class="flip-card-front" >
+  <!--      <div class="card "  id = "airQuality"  (click)="flip($event,2)"  >-->
+  <!--        <div class="flip-card-inner">-->
+  <!--          <div class="flip-card-front" >-->
+  <!--            <div class="card-body" *ngIf="!this.toggle[2]">-->
+  <!--              <br> <br> <br> <br>-->
+  <!--              <p class="card-header" style="font-size: 140%">Air Quality </p>-->
+  <!--              <p class="card-header" style="font-size: 220%; color: #ff8a65;"> {{this.avgAirQuality.toFixed(2)}} </p>-->
+  <!--              <br> <br> <br> <br> <br><br>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="flip-card-back"  [ngStyle]="{'height': !this.toggle[2] ? '0px' : '100%'}">-->
+  <!--            <div class="card-body ">-->
+  <!--              <canvas id=chartAirQuality  height="450" ></canvas>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-sm-12 col-md-2 col-12">-->
+  <!--      <div class="card " id = "smoke"  (click)="flip($event,3)">-->
+  <!--        <div class="flip-card-inner">-->
+  <!--          <div class="flip-card-front">-->
 
-          <div class="card-header">
-            <p class="card-header" style="font-size: 140%">Turbidity </p>
-            <p class="card-header" style="font-size: 220%; color: #ff8a65;"> {{this.avgTurbidity.toFixed(2)}}<span style="font-size: 70%"> NTU</span> </p>
+  <!--            <div class="card-header"  *ngIf="!this.toggle[3]" >-->
+  <!--              <br> <br> <br> <br>-->
+  <!--              <p class="card-header" style="font-size: 140%;color: #7e57c2;">Smoke </p>-->
+  <!--              <p class="card-header" style="font-size: 220%;color: #7e57c2;"> {{this.avgSmoke.toFixed(2)}}  </p>-->
+  <!--              <br> <br> <br> <br> <br><br>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="flip-card-back"  [ngStyle]="{'height':!this.toggle[3] ? '0px' : '100%'}">-->
 
-          </div>
-        </div>
-        <div class="flip-card-back">
-          <div class="card-body ">
-            <canvas id=chartTurbidity  height="100" ></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--            <div class="card-body " >-->
+  <!--              <canvas id=chartSmoke  height="450" > </canvas>-->
+  <!--            </div>-->
+  <!--            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+  <!--          </div>-->
+
+  <!--        </div>-->
+
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <!--    <div class="col col-sm-12 col-md-4 col-12"  >-->
+
+  <!--      <div class="card " style="max-height: 300px" >-->
+  <!--        <div class="card-header"  >-->
+  <!--          <p class="card-header" style="font-size: 140%;color: #d32f2f;">Alerts </p></div>-->
+  <!--        <div class="card-body  " style="overflow-y: scroll; " >-->
+
+  <!--          <ul>-->
+  <!--            <li class="list-unstyled team-members">-->
+  <!--            <div class="row">-->
+  <!--              <i class="nc-icon nc-sound-wave" style="font-size: 200%"></i>-->
+  <!--              <div class="col-md-2 col-2">-->
+  <!--                <div>-->
+
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--              <div class="col-md-7 col-7">-->
+  <!--                Noise Detected-->
+  <!--                <br />-->
+  <!--                <span class="text-muted">-->
+  <!--                  <small>Value: 11</small>-->
+  <!--                    At 16/3/2022 14:00:00-->
+  <!--                </span>-->
+  <!--              </div>-->
+  <!--              &lt;!&ndash;                <div class="col-md-3 col-3 text-right">&ndash;&gt;-->
+  <!--              &lt;!&ndash;                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>&ndash;&gt;-->
+  <!--              &lt;!&ndash;                </div>&ndash;&gt;-->
+  <!--            </div>-->
+  <!--          </li>-->
+  <!--            <li>-->
+  <!--              <div class="row">-->
+  <!--                <i class="fa-solid fa-smog" style="font-size: 200%"></i>-->
+  <!--                <div class="col-md-2 col-2">-->
+  <!--                  <div class="avatar">-->
+
+  <!--                  </div>-->
+  <!--                </div>-->
+  <!--                <div class="col-md-7 col-7">-->
+  <!--                  Smoke Detected-->
+  <!--                  <br />-->
+  <!--                  <span class="text-muted">-->
+  <!--                  <small>Value > 0</small>-->
+  <!--                    At 15/3/2022 10:00:00-->
+  <!--                </span>-->
+  <!--                </div>-->
+  <!--                &lt;!&ndash;                <div class="col-md-3 col-3 text-right">&ndash;&gt;-->
+  <!--                &lt;!&ndash;                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>&ndash;&gt;-->
+  <!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+  <!--              </div>-->
+  <!--            </li>-->
+  <!--          </ul>-->
 
 
-</div>
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
-<div class="row">
-  <div class="col-sm-6 col-md-6 col-12">
-    <div class="card " id = "pressure"  (click)="flip($event)" >
-      <div class="flip-card-inner">
-        <div class="flip-card-back" >
-
-          <div class="card-header">
-            <p class="card-header" style="font-size: 140%;color: #7e57c2;">Pressure </p>
-            <p class="card-header" style="font-size: 220%;color: #7e57c2;"> {{this.avgPressure.toFixed(2)}}  </p>
-
-          </div>
-        </div>
-        <div class="flip-card-front">
-          <div class="card-header ">
-            <h3 class="card-title">Pressure
-            </h3>
-
-          </div>
-          <div class="card-body " >
-            <canvas id=chartPressure  height="80" > </canvas>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-12 col-md-6 col-12">
-    <div class="card"  id = "humidity"  (click)="flip($event)"  >
-      <div class="flip-card-inner">
-        <div class="flip-card-back" >
-
-          <div class="card-header">
-            <p class="card-header" style="font-size: 140%;color: #6bd098;">Humidity </p>
-            <p class="card-header" style="font-size: 220%;color: #6bd098;"> {{this.avgHumidity.toFixed(2)}}  </p>
-
-          </div>
-        </div>
-        <div class="flip-card-front">
-          <div class="card-header ">
-            <h5 class="card-title">Humidity</h5>
-
-          </div>
-          <div class="card-body ">
-            <canvas id=chartHumidity  height="80" ></canvas>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!--Averages Graphs-->
-<h5 class="card-title" id = "avg">Average Readings of  Node {{this.nodeId}}</h5>
-<div class="card " >
   <div class="row">
-    <div class="col col-sm-12 col-md-4 col-lg-4 col-12 ">
-      <div class="card " id = "tempAvg"  (click)="flip($event)"  >
-        <div class="flip-card-inner">
-          <div class="flip-card-front"   >
-            <div class="card-header" >
-              <p style="font-size: 140%">Temperature </p>
-              <p class="card-header" style="font-size: 220%;color: #fbc658;"> {{this.avgTemp.toFixed(2)}} <span style="font-size: 70%"> °C</span> </p>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <div class="card-body ">
-              <div class="btn-group pull-right btn-group-sm" role="group" id = "tmgp" aria-label="Basic example">
-                <button type="button " id = "tm0"  class="btn btn-primary active"  (mouseover)="getTemp($event, daily)">Day</button>
-                <button type="button" id = "tm1"  class="btn btn-primary" (mouseover)="getTemp($event, monthly)">Month</button>
-                <button type="button" id = "tm2"  class="btn btn-primary" (mouseover)="getTemp($event, yearly)">Year</button>
-              </div>
-              <canvas id=chartAvgTemp  height="100" ></canvas>
-            </div>
-          </div>
+
+    <div class="col col-sm-12 col-md-6 col-12"  >
+
+      <div class="card" (click)="getLoc()" >
+        <br>
+        <h5 class="card-title">&nbsp;Location Co-ordinates</h5>
+        <div class="card-body " >
+          <span>
+               <a  (click)="getLoc()" style="font-size: 180%">{{latitude}}<br>{{longitude}}</a>
+                </span>
+          <br><br><br><br><br><br><br>
         </div>
       </div>
     </div>
-
-    <div class="col col-sm-12 col-md-4 col-lg-4 col-12"   >
-      <div class="card " id = "phAvg"  (click)="flip($event)"  >
-        <div class="flip-card-inner">
-          <div class="flip-card-front" >
-
-            <div class="card-header">
-              <p class="card-header" style="font-size: 140%">Ph </p>
-              <p class="card-header" style="font-size: 220%;color: #51CACF;"> {{this.avgPh.toFixed(2)}}  </p>
-
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <div class="card-body ">
-              <div class="btn-group pull-right btn-group-sm" role="group" id = "phgp"  aria-label="Basic example">
-                <button type="button " id = "ph0"   class="btn btn-primary active" (mouseover)="getPh($event, daily)">Day</button>
-                <button type="button" id = "ph1"  class="btn btn-primary" (mouseover)="getPh($event,monthly)">Month</button>
-                <button type="button"id = "ph2"  class="btn btn-primary" (mouseover)="getPh($event,yearly)">Year</button>
-              </div>
-              <canvas id=chartAvgPh  height="100" ></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col col-sm-12 col-md-4 col-lg-4 col-12"  >
-
-      <div class="card" id = "turAvg"  (click)="flip($event)"  >
-        <div class="flip-card-inner">
-          <div class="flip-card-front" >
-
-            <div class="card-header">
-              <p class="card-header" style="font-size: 140%">Turbidity </p>
-
-              <p class="card-header" style="font-size: 220%;color: #ff8a65;"> {{this.avgTurbidity.toFixed(2)}}<span style="font-size: 70%"> NTU</span> </p>
-
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <div class="card-body ">
-              <div class="btn-group pull-right btn-group-sm" role="group" id = "tgp" aria-label="Basic example">
-                <button type="button "  id = "t0" class="btn btn-primary active" (mouseover)="getTurbidity($event, daily)">Day</button>
-                <button type="button"  id = "t1"class="btn btn-primary" (mouseover)="getTurbidity($event, monthly)">Month</button>
-                <button type="button" id = "t2" class="btn btn-primary" (mouseover)="getTurbidity($event, yearly)">Year</button>
-              </div>
-              <canvas id=chartAvgTurbidity  height="100" >
-
-              </canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-  <div style="height: 36%"></div>
-  <div class="row">
-    <div class="col-sm-6 col-md-6 col-12">
-      <div class="card" id = "pressAvg"  (click)="flip($event)"  >
-        <div class="flip-card-inner">
-          <div class="flip-card-back" >
-
-            <div class="card-header">
-              <p class="card-header" style="font-size: 140%;color: #7e57c2;">Pressure </p>
-              <p class="card-header" style="font-size: 220%;color: #7e57c2;"> {{this.avgPressure.toFixed(2)}}  </p>
-
-            </div>
-          </div>
-          <div class="flip-card-front">
-            <div class="card-header ">
-              <h5 class="card-title">Pressure</h5>
-              <div class="btn-group pull-right btn-group-sm" id = "pgp" role="group" aria-label="Basic example">
-                <button type="button " id="0" class="btn btn-primary" active (mouseover)="getPressure($event,daily)">Day</button>
-                <button type="button" id="1" class="btn btn-primary" (mouseover)="getPressure($event, monthly)">Month</button>
-                <button type="button" id="2" class="btn btn-primary" (mouseover)="getPressure($event, yearly)">Year</button>
-              </div>
-            </div>
-            <div class="card-body ">
-              <canvas id=chartAvgPressure  height="80" ></canvas>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
     <div class="col-sm-12 col-md-6 col-12">
-      <div class="card"   id = "humAvg"  (click)="flip($event)">
-        <div  class="flip-card-inner">
-          <div class="flip-card-back" >
-
-            <div class="card-header">
-              <p class="card-header" style="font-size: 140%;color: #6bd098;">Humidity </p>
-              <p class="card-header" style="font-size: 220%;color: #6bd098;"> {{this.avgHumidity.toFixed(2)}}  </p>
-
-            </div>
-          </div>
-
-          <div class="flip-card-front">
-            <div class="card-header ">
-              <h5 class="card-title">Humidity
-                <div class="btn-group pull-right btn-group-sm" id = "hgp" role="group" aria-label="Basic example">
-                  <button type="button " id = "h0" class="btn btn-primary active"  (mouseover)="getHumidity($event, daily)">Day</button>
-                  <button type="button" id = "h1" class="btn btn-primary" (mouseover)="getHumidity($event,monthly)">Month</button>
-                  <button type="button" id = "h2" class="btn btn-primary" (mouseover)="getHumidity($event, yearly)">Year</button>
-                </div></h5>
-
-            </div>
-            <div class="card-body">
-              <canvas id=chartAvgHumidity  height="80" ></canvas>
-            </div>
-          </div>
-
+      <div class="card  maph-100"  id = "temperature"   >
+        <div class="card-header " >
+          <h5 class="card-title">Temperature (°C)</h5>
+        </div>
+        <div class="card-body ">
+          <canvas  id=chartTemp  style="width:80%;height:70%;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-12">
+        <div class="card maph-100">
+        <div class="card-header " >
+          <h5 class="card-title">Soil Moisture(%)</h5>
+        </div>
+        <div class="card-body ">
+          <canvas id=chartSoilHumidity  style="width:80%;height:70%;"  ></canvas>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-12">
+        <div class="card maph-100">
+        <div class="card-header " >
+          <h5 class="card-title">Humidity(%)</h5>
+        </div>
+        <div class="card-body ">
+          <canvas id=chartHumidity style="width:80%;height:80%;" ></canvas>
+        </div>
         </div>
 
       </div>
     </div>
   </div>
-</div>
+
+
+  <!--Averages Graphs-->
+
+

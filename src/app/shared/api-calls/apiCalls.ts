@@ -50,4 +50,28 @@ export class ApiCalls {
   public getAverageTemperatureByNode(nodeId, avgType): Observable<any> {
     return this.http.get<any>(endpoint + 'averagetemperature/'  + nodeId + '/' + avgType, httpOptions).pipe();
   }
+  public getLocationByNode(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'latlongdata/'  + nodeId , httpOptions).pipe();
+  }
+  public getLightByNode(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'lightdata/'  + nodeId , httpOptions).pipe();
+  }
+  public getElevationByNode(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'elevationdata/'  + nodeId , httpOptions).pipe();
+  }
+  public getAirQualityByNode(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'airqualitydata/'  + nodeId , httpOptions).pipe();
+  }
+  public getSoilHumidityByNode(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'soilhumiditydata/'  + nodeId , httpOptions).pipe();
+  }
+  public getSmokeByNode(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'smokedata/'  + nodeId , httpOptions).pipe();
+  }
+  public getRecentAlerts(): Observable<any> {
+    return this.http.get<any>(endpoint + 'alertsdata'   , httpOptions).pipe();
+  }
+  public getHistoricalAlerts(nodeId): Observable<any> {
+    return this.http.get<any>(endpoint + 'alertsdata/' + nodeId   , httpOptions).pipe();
+  }
 }

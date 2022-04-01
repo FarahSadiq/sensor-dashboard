@@ -18,15 +18,34 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: '/dashboard/1',     title: 'Nodes',         icon: 'nc-atom',     class: '', type : 'sub',
+  { path: '/dashboard/UK-GLA-001',     title: 'Nodes',         icon: 'nc-atom',     class: '', type : 'sub',
     'children': [
-      { title: 'Node 1',     path: '/dashboard/1',     class: '', type : 'link'
+      { title: 'UK-GLA-001',     path: '/dashboard/UK-GLA-001',     class: '', type : 'link'
       },
-      { title: 'Node 2',     path: '/dashboard/2',     class: '', type : 'link'
+      { title: 'UK-GLA-002',     path: '/dashboard/UK-GLA-002',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-003',     path: '/dashboard/UK-GLA-003',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-004',     path: '/dashboard/UK-GLA-004',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-005',     path: '/dashboard/UK-GLA-005',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-006',     path: '/dashboard/UK-GLA-006',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-007',     path: '/dashboard/UK-GLA-007',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-008',     path: '/dashboard/UK-GLA-008',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-009',     path: '/dashboard/UK-GLA-009',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-010',     path: '/dashboard/UK-GLA-010',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-011',     path: '/dashboard/UK-GLA-011',     class: '', type : 'link'
+      },
+      { title: 'UK-GLA-012',     path: '/dashboard/UK-GLA-012',     class: '', type : 'link'
       }]
   },
-  { path: '/dashboard/3',     title: 'Average Values',         icon: 'nc-chart-bar-32',       class: '', type : 'link'
-  },
+  //{ path: '/dashboard/3',     title: 'Average Values',         icon: 'nc-chart-bar-32',       class: '', type : 'link' },
   // { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' ,  type: "link",},
   // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' ,  type: "link", },
   // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' ,  type: "link",},
